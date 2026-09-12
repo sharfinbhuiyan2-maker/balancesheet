@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Balance Sheet</title>
+</head>
+
+<body>
+
+    <h1>Balance Sheet Calculator</h1>
+
+    <p>Daily Sales</p>
+    <input id="sales" type="number">
+
+    <p>Daily Expenses</p>
+    <input id="expenses" type="number">
+
+    <br><br>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+
+        async function calculate() {
+
+            let sales = document.getElementById("sales").value;
+            let expenses = document.getElementById("expenses").value;
+
+            let response = await fetch(
+                `/calculate?sales=${sales}&expenses=${expenses}`
+            );
+
+            let result = await response.text();
+
+            document.getElementById("result").innerText =
+                "Net Revenue: $" + result;
+        }
+
+    </script>
+
+</body>
+
+</html>
